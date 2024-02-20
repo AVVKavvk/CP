@@ -1,0 +1,6 @@
+z-1
+PI i mod z =z-1
+i=1
+
+
+(fact(n-1) %n )  == n-1    -->>>   n is prime number

@@ -1,0 +1,16 @@
+φ(n)= number of element which is less than  to n and GCD(n,element)=1;
+
+for  n=8    ---->>>  1,3,5,7 
+
+φ(n)= n-1   // if n is prime
+φ(n)= n is multiple of prime  --->>>  let's p,q
+    => (p-1)*(q-1)
+
+φ(n) = 2^n - 2^n-1     // convert it into p^x    -->>  p=prime
+
+
+φ(n) = n * mul(1-1/p)    //   p is the prime factor of number
+
+example n=36   -->>  2*2*3*3   p=[2,3]
+               --> 36*(1-1/2)*(1-1/3)
+               --> 12
