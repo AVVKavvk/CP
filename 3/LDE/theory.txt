@@ -1,0 +1,3 @@
+ 
+ ax+by=c;
+ has any negative or positive sol iff  (c%gcd(a,b)==0);
