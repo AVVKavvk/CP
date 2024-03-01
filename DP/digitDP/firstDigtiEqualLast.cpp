@@ -34,15 +34,15 @@ vector<int> convertNum(int n){
     return temp;
 }
 
-int countDigitDP(int index,int flag,int cnt,vector<int>num,vector<vector<vector<int>>>&dp,int &k,int&d){
- if(cnt>k) return 0;
+int sameDigit(int index,int flag,int first,int last ,vector<int>num,vector<vector<vector<vector<int>>>>&dp){
+
 if(index==num.size()){
-    if(cnt==k){ 
+    if(first==last){ 
         return 1;
     }
     else return 0;
 }
- if(dp[index][flag][cnt]!=-1) return dp[index][flag][cnt];
+ if(dp[index][flag][first][last]!=-1) return dp[index][flag][first][last];
 
 int limit=num[index];
 
@@ -52,44 +52,53 @@ if(flag==1){
 int count=0;
 
 for(int digit=0;digit<=limit;digit++){
-    if(flag==1){
-      if(digit==d){
-        count+=countDigitDP(index+1,flag,cnt+1,num,dp,k,d);
-      }
-      else count+=countDigitDP(index+1,flag,cnt,num,dp,k,d);
+  if(flag==1){
+         if(first==0){
+            count+=sameDigit(index+1,1,digit,digit,num,dp);
+         }
+         else {
+            count+=sameDigit(index+1,1,first,digit,num,dp);
+         }
+  }
+  else{
+    if(digit<num[index]){
+        if(first==0){
+                    count+=sameDigit(index+1,1,digit,digit,num,dp);
+                }
+                else {
+                    count+=sameDigit(index+1,1,first,digit,num,dp);
+                }
+            }
+    else{
+        if(first==0){
+                    count+=sameDigit(index+1,0,digit,digit,num,dp);
+                }
+                else {
+                    count+=sameDigit(index+1,0,first,digit,num,dp);
+                }
     }
-    else if(flag==0){
-       
-       if(digit==d){
-
-        if(digit<num[index]) count+=countDigitDP(index+1,1,cnt+1,num,dp,k,d);
-        else count+=countDigitDP(index+1,0,cnt+1,num,dp,k,d);
-
-       }
-       else {
-         if(digit<num[index]) count+=countDigitDP(index+1,1,cnt,num,dp,k,d);
-         else count+=countDigitDP(index+1,0,cnt,num,dp,k,d);
-       }
-    }
+  }
 }
-return dp[index][flag][cnt]= count;
+return dp[index][flag][first][last]= count;
 }
+
+
+
 int main() {
 ios_base::sync_with_stdio(false);
 cin.tie(NULL);
 
 
-vector<vector<vector<int>>>dp(19,vector<vector<int>>(2,vector<int>(19,-1)));
+vector<vector<vector<vector<int>>>>dp(19,vector<vector<vector<int>>>(2,vector<vector<int>>(10,vector<int>(10,-1))));
 int l,r;
-int k,d;
-cin>>l>>r>>d>>k;
+cin>>l>>r;
 vector<int> right=convertNum(r);
-r=countDigitDP(0,0,0,right,dp,k,d);
+r=sameDigit(0,0,0,0,right,dp);
 vector<int> left=convertNum(l-1);
-dp.assign(19, vector<vector<int>>(2, vector<int>(19, -1)));
+dp.assign(19,vector<vector<vector<int>>>(2,vector<vector<int>>(10,vector<int>(10,-1))));
 
-l=countDigitDP(0,0,0,left,dp,k,d);
-cout<<"output "<< r-l;
+l=sameDigit(0,0,0,0,left,dp);
+cout<< r-l<<endl;
 
 
 

@@ -45,7 +45,7 @@ void segementedSieve(){
     cin>>l>>r;
 
     vector<int>primes;
-                               // step 2 collect  primes number before sort(r)
+                               // step 2 collect  primes number before sqrt(r)
     for(int i=2;i*i<=r;i++){
         if(sieve[i]==1) primes.pb(i);
     }

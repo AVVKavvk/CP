@@ -27,6 +27,6 @@ cin>>n;
 
    // // M2
    cout<< __builtin_popcount(k)<<endl;
-//    cout<< __builtin_popcount (4);<<endl;
+   cout<< __builtin_popcountll (4)<<endl;   // ?   long long
 return 0 ;
 }
