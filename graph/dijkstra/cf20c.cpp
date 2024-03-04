@@ -48,11 +48,11 @@ while(m--){
     int u,v,w;
     cin>>u>>v>>w;
     pp temp;
-            temp.first=v;
-            temp.second=w;
+    temp.first=v;
+    temp.second=w;
     adj[u].pb(temp);
-  temp.first=u;
-            temp.second=w;
+    temp.first=u;
+    temp.second=w;
     adj[v].pb(temp);
 
 }
@@ -82,8 +82,8 @@ dist[1]=0;
             {
                 dist[x.first]=dist[a]+x.second;
                 pp temp;
-            temp.first=x.first;
-            temp.second=dist[x.first];
+                temp.first=x.first;
+                temp.second=dist[x.first];
                 pq.push(temp);
                 parent[x.first]=a;
             }

@@ -47,7 +47,6 @@ void dfs(int node,int par,int level=1){
     parent[node][0]=par;
     for(int i=1;i<18;i++){
         parent[node][i]= parent[parent[node][i-1]][i-1];
-
     }
 
     for(auto it:adj[node]){
@@ -88,7 +87,7 @@ while(q--){
         cnt++;
         k=k>>1;
     }
-    if(node==0) cout<<-1<<endl;
+    if(node==0) cout<< -1<<endl;
     else
     cout<<node<<endl;
 }
