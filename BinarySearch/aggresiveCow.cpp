@@ -29,64 +29,58 @@ ll bTD(){ string s;cin>>s;ll num=0;
 for(auto ch:s){if(ch=='1')num = num*2 + 1;else num=num*2;}
 return num;}; 
 bool pOf2(ll num){if(num<=0) return false;if((num&(num-1))==0) return true;else return false;}
- 
+ bool isPossible(int arr[],int cow,int mid,int n){
+    int last=arr[0];
+    int c=1;
 
- void maxPeak(){
+    for(int i=1;i<n;i++){
+        if((arr[i]-last)>=mid){
+            c++;
+            last=arr[i];
+        }
+        if(c==cow) return true;
+    }
+    return c<=cow;
+ }
+void aggresiveCow(){
     int n;
     cin>>n;
-    int k;
-    cin>>k;
-    int arr[n];
-    for(int i=0;i<n;i++) cin>>arr[i];
+    int a[n];
+    for(int i=0;i<n;i++)cin>>a[i];
+    int cow;
+    cin>>cow;
+    sort(a,a+n);
+    int low=1;
+    int high=a[n-1];
+    
+    int ans=1;
+    while(low<=high){
+        int mid=low+(high-low)/2;
 
-    int peak=0;
-    int index=0;
-    int maxi=0;
-    for(int i=1;i<k-1;i++){
-        if(arr[i]>arr[i+1] && arr[i]>arr[i-1]) {
-            peak++;
+        if(isPossible(a,cow,mid,n)){
+            ans=mid;
+            low=mid+1;
         }
+        else high=mid-1;
     }
-    // if(peak>0) {
-    //     maxi=peak;
-    //     index=0;
-    // }
-    maxi=peak;
-    index=0;
-    int l=0;
-    int r=k-1;
-
-    while(r<n-1){
-
-        if(arr[r]>arr[r+1] && arr[r]>arr[r-1]) {
-            peak++;
-        }
-        r++;
-        l++;
-        if(arr[l]>arr[l+1] && arr[l]>arr[l-1]) peak--;
-        if(peak>maxi){
-            maxi=peak;
-            index=l;
-        }
-    }
-
-    cout<<maxi+1 <<" "<<index+1<<endl;
- }
+    cout<< ans;
+}
+ 
 
 int main() {
 ios_base::sync_with_stdio(false);
 cin.tie(NULL);
-#ifndef ONLINE_JUDGE 
-freopen("input.txt", "r", stdin);
-freopen("output.txt", "w", stdout);
-#endif
+// #ifndef ONLINE_JUDGE 
+// freopen("input.txt", "r", stdin);
+// freopen("output.txt", "w", stdout);
+// #endif
 
 
 
 int t=1;
 cin>>t;
 while(t--){ 
-maxPeak();
+
 
 }
 return 0 ;

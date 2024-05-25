@@ -41,11 +41,10 @@ int main() {
 
     sort(Q, Q+q, cmp);
 
-    // vector<int> freq(1000005, 0);
     vector<int> ans(q);
 
     int left = 0, right = 0, sum = 0;
-    // freq[arr[0]]++;
+    
 
     for (int i = 0; i < q; i++) {
         int l = Q[i].l;
@@ -53,8 +52,7 @@ int main() {
         int ind = Q[i].ind;
 
         while (left < l) {
-            // freq[arr[left]]--;
-            // if (freq[arr[left]] == 0) cnt--;
+            
             sum-=arr[left];
             left++;
         }
@@ -62,13 +60,11 @@ int main() {
         while (left > l) {
             left--;
             sum+=arr[left];
-            // freq[arr[left]]++;
-            // if (freq[arr[left]] == 1) cnt++;
+           
         }
 
         while (right <=r) {
-            // freq[arr[right]]++;
-            // if (freq[arr[right]] == 1) cnt++;
+           
             sum+=arr[right];
             right++;
         }
@@ -76,8 +72,7 @@ int main() {
         while (right > r+1 ) {
             right--;
             sum-=arr[right];
-            // freq[arr[right]]--;
-            // if (freq[arr[right]] == 0) cnt--;
+           
         }
 
         ans[ind] = sum;

@@ -39,7 +39,7 @@ int main()
                 prefix[i][j] -= prefix[i - 1][j - 1];
         }
     }
-    int i1 = 1, j1 = 1, i2 = 2, j2 = 2;
+    int i1 = 2, j1 = 3, i2 = 3, j2 = 3;
     int s = 0;
     s += prefix[i2][j2];
     // cout << s << ' ';

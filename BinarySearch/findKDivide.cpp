@@ -31,63 +31,64 @@ return num;};
 bool pOf2(ll num){if(num<=0) return false;if((num&(num-1))==0) return true;else return false;}
  
 
- void maxPeak(){
+ bool isAble(int arr[],int sum,int k,int n){
+    int s=0;
+
+    for(int i=0;i<n;i++){
+        s+=arr[i]/k;
+    }
+    if(s<=sum) return 1;
+    return 0;
+ }
+void findKDivide(){
     int n;
     cin>>n;
-    int k;
-    cin>>k;
+ 
     int arr[n];
-    for(int i=0;i<n;i++) cin>>arr[i];
+    
+    for(int i=0;i<n;i++)cin>>arr[i];
 
-    int peak=0;
-    int index=0;
-    int maxi=0;
-    for(int i=1;i<k-1;i++){
-        if(arr[i]>arr[i+1] && arr[i]>arr[i-1]) {
-            peak++;
-        }
+    int sum;
+    cin>>sum;
+
+   int maxi=1;
+   for(int i=0;i<n;i++) maxi=max(maxi,arr[i]);
+
+   int low=1;
+   int ans=-1;
+   maxi++;
+   while(low<=maxi){
+    int mid=(low+maxi)/2;
+    if(isAble(arr,sum,mid,n)){
+        ans=mid;
+        maxi=mid-1;
     }
-    // if(peak>0) {
-    //     maxi=peak;
-    //     index=0;
-    // }
-    maxi=peak;
-    index=0;
-    int l=0;
-    int r=k-1;
-
-    while(r<n-1){
-
-        if(arr[r]>arr[r+1] && arr[r]>arr[r-1]) {
-            peak++;
-        }
-        r++;
-        l++;
-        if(arr[l]>arr[l+1] && arr[l]>arr[l-1]) peak--;
-        if(peak>maxi){
-            maxi=peak;
-            index=l;
-        }
-    }
-
-    cout<<maxi+1 <<" "<<index+1<<endl;
- }
+    else low=mid+1;
+   }
+cout<<ans<<endl;
+}
+ 
 
 int main() {
 ios_base::sync_with_stdio(false);
 cin.tie(NULL);
-#ifndef ONLINE_JUDGE 
-freopen("input.txt", "r", stdin);
-freopen("output.txt", "w", stdout);
-#endif
+// #ifndef ONLINE_JUDGE 
+// freopen("input.txt", "r", stdin);
+// freopen("output.txt", "w", stdout);
+// #endif
 
 
 
 int t=1;
-cin>>t;
+// cin>>t;
 while(t--){ 
-maxPeak();
+findKDivide();
 
 }
 return 0 ;
 }
+
+
+// 7
+// 2 3 5 8 11 13 16
+// 10

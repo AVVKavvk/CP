@@ -24,8 +24,8 @@ using namespace std;
 
 int main()
 {
-    int arr[4] = {1, 2, 3, 4};
-    int prefix[5] = {0};
+    int arr[5] = {1 ,3, 4, 2, 5};
+    int prefix[6] = {0};
     int t;
     cin >> t;
     while (t--)
@@ -38,13 +38,13 @@ int main()
     }
     int sum = 0;
 
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 5; i++)
     {
         sum += prefix[i];
         //    cout<<sum<<" ";
         arr[i] += sum;
     }
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 5; i++)
     {
         cout << arr[i] << ' ';
     }

@@ -20,25 +20,45 @@ using namespace std ;
 #define v2e vector <vector<int> > 
 #define v2ec vector <vector<char> >
 #define vei vector<int> 
-#define pu(n) push_back( n); 
+#define pu(n) push_back(n); 
 #define ll long long
+#define limit(x) (x.begin(),x.end())
 
 
+ll BE(int base,int n){
+    ll ans=1;
+    
+    while(n>0){
+        if(n&1){
+            n--;
+            ans=ans*base;
+        }
+        else {
+            base=base*base;
+            n=n>>1;
+        }
+    }
+    return ans;
+}
  
 
 int main() {
 ios_base::sync_with_stdio(false);
 cin.tie(NULL);
 
+#ifndef ONLINE_JUDGE 
+freopen("input.txt", "r", stdin);
+freopen("output.txt", "w", stdout);
+#endif
 
-int n;
-cin >> n ;
-for(int i=2;i*i<=n;i++){             //*    TC  ->  sqrt(n)
-    while(n%i==0){
-        cout<<i<<" ";
-        n=n/i;
-    }
-    if(n>=2 ) cout<<n<<endl;            //? learn
-}
+
+
+int t=1;
+// cin>>t;
+while(t--){
+    // int ans=BE(2,5);
+    ps(BE(2,5)); }
 return 0 ;
+
+
 }

@@ -31,47 +31,14 @@ return num;};
 bool pOf2(ll num){if(num<=0) return false;if((num&(num-1))==0) return true;else return false;}
  
 
- void maxPeak(){
-    int n;
-    cin>>n;
-    int k;
-    cin>>k;
-    int arr[n];
-    for(int i=0;i<n;i++) cin>>arr[i];
+ int calculateXOR(int n){
+    
+if(n%4==0) return n;
+if(n%4==1) return 1;
+if(n%4==3) return 0;
+if(n%4==2) return n+1;
+}
 
-    int peak=0;
-    int index=0;
-    int maxi=0;
-    for(int i=1;i<k-1;i++){
-        if(arr[i]>arr[i+1] && arr[i]>arr[i-1]) {
-            peak++;
-        }
-    }
-    // if(peak>0) {
-    //     maxi=peak;
-    //     index=0;
-    // }
-    maxi=peak;
-    index=0;
-    int l=0;
-    int r=k-1;
-
-    while(r<n-1){
-
-        if(arr[r]>arr[r+1] && arr[r]>arr[r-1]) {
-            peak++;
-        }
-        r++;
-        l++;
-        if(arr[l]>arr[l+1] && arr[l]>arr[l-1]) peak--;
-        if(peak>maxi){
-            maxi=peak;
-            index=l;
-        }
-    }
-
-    cout<<maxi+1 <<" "<<index+1<<endl;
- }
 
 int main() {
 ios_base::sync_with_stdio(false);
@@ -82,11 +49,13 @@ freopen("output.txt", "w", stdout);
 #endif
 
 
-
 int t=1;
-cin>>t;
+// cin>>t;
 while(t--){ 
-maxPeak();
+int l,r;
+cin>>l>>r;
+
+cout<<calculateXOR(r)-calculateXOR(l-1);
 
 }
 return 0 ;

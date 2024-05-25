@@ -65,12 +65,8 @@ dist[1]=0;
     
     
     priority_queue<pp> pq;
-    pq.push({1,1});
     pq.push({1,0});
-    pq.push({1,-1});
-
-    auto first=pq.top();
-    
+   
     int a;
     while(!pq.empty())
     {
@@ -90,7 +86,7 @@ dist[1]=0;
         }
     }
 
-if(dist[n]==1e15) {cout<<-1<<endl;return 0;}
+if(dist[n]==1e15) {cout<< -1<<endl;return 0;}
 vector<int> ans;
 int node=n;
 while(node!=1){

@@ -39,7 +39,7 @@ using namespace std ;
 
 
     for(int i=2;i*i<=N;i++){           
-        if(sieve[i]==i){
+        if(sieve[i]==i){                     //? 
             for(int j=i*i;j<=N;j=j+i){
                 sieve[j]=min(sieve[j],i);
                 // sieve[j]=i;
