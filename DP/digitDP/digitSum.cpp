@@ -29,14 +29,24 @@ if(flag==1){
 long long count=0;
 
 for(int digit=0;digit<=limit;digit++){
-    if(flag==1){
-      count+=(sumDigit(index+1,1,sum+digit,num,dp));
+    if(digit<num[index]){
+        count+=sumDigit(index+1,1,sum+digit,num,dp);
     }
-    else if(flag==0){
-       if(digit<num[index] ) count+=(sumDigit(index+1,1,sum+digit,num,dp));
-       else count+=(sumDigit(index+1,0,sum+digit,num,dp));
+    else {
+        count+=sumDigit(index+1,flag,sum+digit,num,dp);
     }
 }
+
+
+// for(int digit=0;digit<=limit;digit++){
+//     if(flag==1){
+//       count+=(sumDigit(index+1,1,sum+digit,num,dp));
+//     }
+//     else if(flag==0){
+//        if(digit<num[index] ) count+=(sumDigit(index+1,1,sum+digit,num,dp));
+//        else count+=(sumDigit(index+1,0,sum+digit,num,dp));
+//     }
+// }
 return dp[index][flag][sum]= count;
 }
 int main() {
@@ -47,7 +57,8 @@ cin.tie(NULL);
 
 long long l,r;
 int t;
-cin>>t;
+// cin>>t;
+t=1;
 while(t--){
 
 

@@ -52,33 +52,43 @@ if(flag==1){
 int count=0;
 
 for(int digit=0;digit<=limit;digit++){
-  if(flag==1){
-         if(first==0){
-            count+=sameDigit(index+1,1,digit,digit,num,dp);
-         }
-         else {
-            count+=sameDigit(index+1,1,first,digit,num,dp);
-         }
-  }
-  else{
     if(digit<num[index]){
-        if(first==0){
-                    count+=sameDigit(index+1,1,digit,digit,num,dp);
-                }
-                else {
-                    count+=sameDigit(index+1,1,first,digit,num,dp);
-                }
-            }
-    else{
-        if(first==0){
-                    count+=sameDigit(index+1,0,digit,digit,num,dp);
-                }
-                else {
-                    count+=sameDigit(index+1,0,first,digit,num,dp);
-                }
+        if(first==0) count+=sameDigit(index+1,1,digit,digit,num,dp);
+        else count+=sameDigit(index+1,1,first,digit,num,dp);
     }
-  }
+    else{
+        if(first==0) count+=sameDigit(index+1,flag,digit,digit,num,dp);
+        else count+=sameDigit(index+1,flag,first,digit,num,dp);
+    }
 }
+// for(int digit=0;digit<=limit;digit++){
+//   if(flag==1){
+//          if(first==0){
+//             count+=sameDigit(index+1,1,digit,digit,num,dp);
+//          }
+//          else {
+//             count+=sameDigit(index+1,1,first,digit,num,dp);
+//          }
+//   }
+//   else{
+//     if(digit<num[index]){
+//         if(first==0){
+//                     count+=sameDigit(index+1,1,digit,digit,num,dp);
+//                 }
+//                 else {
+//                     count+=sameDigit(index+1,1,first,digit,num,dp);
+//                 }
+//             }
+//     else{
+//         if(first==0){
+//                     count+=sameDigit(index+1,0,digit,digit,num,dp);
+//                 }
+//                 else {
+//                     count+=sameDigit(index+1,0,first,digit,num,dp);
+//                 }
+//     }
+//   }
+// }
 return dp[index][flag][first][last]= count;
 }
 
@@ -104,3 +114,6 @@ cout<< r-l<<endl;
 
 return 0 ;
 }
+
+
+// 12 1122345

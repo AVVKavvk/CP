@@ -52,26 +52,40 @@ if(flag==1){
 int count=0;
 
 for(int digit=0;digit<=limit;digit++){
-    if(flag==1){
-      if(digit==d){
-        count+=countDigitDP(index+1,flag,cnt+1,num,dp,k,d);
-      }
+    if(digit<num[index]){
+      if(digit==d) count+=countDigitDP(index+1,1,cnt+1,num,dp,k,d);
+      else count+=countDigitDP(index+1,1,cnt,num,dp,k,d);
+    }
+    else{
+      if(digit==d) count+=countDigitDP(index+1,flag,cnt+1,num,dp,k,d);
       else count+=countDigitDP(index+1,flag,cnt,num,dp,k,d);
     }
-    else if(flag==0){
-       
-       if(digit==d){
-
-        if(digit<num[index]) count+=countDigitDP(index+1,1,cnt+1,num,dp,k,d);
-        else count+=countDigitDP(index+1,0,cnt+1,num,dp,k,d);
-
-       }
-       else {
-         if(digit<num[index]) count+=countDigitDP(index+1,1,cnt,num,dp,k,d);
-         else count+=countDigitDP(index+1,0,cnt,num,dp,k,d);
-       }
-    }
 }
+
+
+// for(int digit=0;digit<=limit;digit++){
+//     if(flag==1){
+//       if(digit==d){
+//         count+=countDigitDP(index+1,flag,cnt+1,num,dp,k,d);
+//       }
+//       else count+=countDigitDP(index+1,flag,cnt,num,dp,k,d);
+//     }
+//     else if(flag==0){
+       
+//        if(digit==d){
+
+//         if(digit<num[index]) count+=countDigitDP(index+1,1,cnt+1,num,dp,k,d);
+//         else count+=countDigitDP(index+1,0,cnt+1,num,dp,k,d);
+
+//        }
+//        else {
+//          if(digit<num[index]) count+=countDigitDP(index+1,1,cnt,num,dp,k,d);
+//          else count+=countDigitDP(index+1,0,cnt,num,dp,k,d);
+//        }
+//     }
+// }
+
+
 return dp[index][flag][cnt]= count;
 }
 int main() {
@@ -83,9 +97,11 @@ vector<vector<vector<int>>>dp(19,vector<vector<int>>(2,vector<int>(19,-1)));
 int l,r;
 int k,d;
 cin>>l>>r>>d>>k;
+
 vector<int> right=convertNum(r);
 r=countDigitDP(0,0,0,right,dp,k,d);
-vector<int> left=convertNum(l-1);
+
+vector<int> left=convertNum(l-1);                               //? l-1 
 dp.assign(19, vector<vector<int>>(2, vector<int>(19, -1)));
 
 l=countDigitDP(0,0,0,left,dp,k,d);
