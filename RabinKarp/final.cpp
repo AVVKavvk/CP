@@ -73,8 +73,11 @@ cin.tie(NULL);
 string s,path;
 cin>>s>>path;
 rabinKarp(s,path);
-cout<<cnt;
-
+cout<<cnt<<endl;
+for(auto i:ans) cout<<i<<" ";
+nl;
 
 return 0 ;
 }
+// aabbaabbccccaabb
+// aabb
