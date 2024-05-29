@@ -38,7 +38,7 @@ cin.tie(NULL);
 vector<pair<int,pair<int,ll>>>store;
 int n,q;
 cin>>n>>q;
-fli(1,n+2) {       //*     importent 
+fli(1,n+2) {                  //*     importent 
     parent[i]=i;
 }
 // cout<<"kumawat" ;

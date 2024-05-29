@@ -35,7 +35,7 @@ int size[1000005];
     int up_u=findParent(u);
     int up_v=findParent(v);
     if(up_u==up_v) return ;
-    if(size[ul_u]>=size[up_v]){
+    if(size[up_u]>=size[up_v]){
         size[up_u]+=size[up_v];
         parent[up_v]=up_u;
     }
