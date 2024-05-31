@@ -34,7 +34,8 @@ void preCompute() {
 
 ll NcR(int n, int r) {
     if (r > n) return 0;
-    return (fact[n] * (power[r] * power[n-r] % mod)) % mod;
+    return (fact[n] * (power[r] * power[n-r] % mod)) % mod;   //?   (()%mod)%mod   not working
+                                                              // ? 
 }
 
 int main() {

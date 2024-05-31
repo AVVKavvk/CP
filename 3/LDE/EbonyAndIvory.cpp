@@ -30,7 +30,7 @@ int main() {
 ios_base::sync_with_stdio(false);
 cin.tie(NULL);
 
-
+                                            //? CF- 633/A
 int a,b,c;
 cin>>a>>b>>c;
 

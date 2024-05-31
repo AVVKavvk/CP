@@ -76,11 +76,7 @@ bool pOf2(ll num){if(num<=0) return false;if((num&(num-1))==0) return true;else 
 int main() {
 ios_base::sync_with_stdio(false);
 cin.tie(NULL);
-#ifndef ONLINE_JUDGE 
-freopen("input.txt", "r", stdin);
-freopen("output.txt", "w", stdout);
-#endif
-
+                                     // ?    1341B CF 
 
 
 int t=1;

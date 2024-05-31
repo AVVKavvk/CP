@@ -24,7 +24,7 @@ using namespace std ;
 #define ll long long
 
 
- 
+ int N;
 int sieve[1000005];
 void createSieve(){
      for(int i=2;i<=N;i++){
@@ -43,10 +43,10 @@ int main() {
 ios_base::sync_with_stdio(false);
 cin.tie(NULL);
 
-
+        cin>>N;
        createSieve();
         // Write Your Code here
-       
+        
         vector<int>ans;
         for(int i=2;i<=N;i++) if(sieve[i]==1) ans.push_back(i);
     
