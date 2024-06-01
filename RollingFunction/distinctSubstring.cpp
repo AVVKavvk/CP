@@ -16,6 +16,8 @@ int countDistinctSubstring(string s)
 {
     //Your code here
     unordered_set<long long>st;
+
+    
     for(int i=0;i<s.size();i++){
             long long pr=1;
             long long pr2=1;

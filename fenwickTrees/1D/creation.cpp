@@ -36,7 +36,7 @@ for(int i=1;i<=n;i++){
 // cin>>preind;
 // cout<<sum(preind);
 
-// for(int i=1;i<=n;i++) cout<<fen[i]<<"  ";
+// for(int i=1;i<=n;i++) cout<<fen[i]<<" ";
 
 
 return 0 ;

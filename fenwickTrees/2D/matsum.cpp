@@ -8,19 +8,21 @@ using namespace std;
 int n;
 int fen[1030][1030];
 int arr[1030][1030];
-void update(int fenNo, int index, int val) {
-    while (index <= n) {
-        fen[fenNo][index] += val;
-        index+=index & (-index);
-    }
+
+void update(int r, int c, int val) {
+   int i,j;
+	for (i = r; i <= n; i += i & -i)
+		for (j = c; j <= n; j += j & -j)
+			fen[i][j] += val;
 }
 
-ll sum(int fenNo, int index) {
+ll sum(int r, int c) {
     ll sum = 0;
-    while (index > 0) {
-        sum += fen[fenNo][index];
-        index-=index & (-index);
-    }
+    int i,j;
+
+    for (i = r; i > 0; i -= i & -i)
+		for (j = c; j > 0; j -= j & -j)
+			sum += fen[i][j];
     return sum;
 }
 
@@ -37,33 +39,40 @@ int main() {
         cin >> n;
         // vector<vector<int>> arr(n + 1, vector<int>(n + 1, 0));
 
-        string str = "";
+        string str="";
 
-        while (str != "END") {
+        while (str!="END") {
             cin >> str;
             if (str == "SET") {
-                int fenNo, index, val;
-                cin >> fenNo >> index >> val;
-                fenNo++;
-                index++;
-                int temp = val - arr[fenNo][index];
-                update(fenNo, index, temp); 
-                arr[fenNo][index] = val;
-            } else if (str == "SUM") {
-                int l1, r1, l2, r2;
-                cin >> l1 >> r1 >> l2 >> r2;
-                l1++;
-                r1++;
-                l2++;
-                r2++;
-                ll ans = 0;
-                for (int i = l1; i <= l2; i++) {
-                    ans += (sum(i, r2) - sum(i, r1 - 1));
-                }
-                cout << ans << endl;
+                int r, c, val;
+                cin >> r >> c >> val;
+                r++;
+                c++;
+                int temp = val - arr[r][c];
+                update(r, c, temp); 
+                arr[r][c] = val;
+
             } 
+            
+            else if (str == "SUM") {
+                int r1,c1,r2,c2;
+                cin>>r1>>c1>>r2>>c2;
+                c1++;
+                r1++;
+                c2++;
+                r2++;
+
+                ll ans = 0;
+                ans+=sum(r2,c2);
+                ans-=sum(r1-1,c2);
+                ans-=sum(r2,c1-1);
+                ans+=sum(r1-1,c1-1);
+                
+                printf("%d\n",ans);
+            } 
+            else break;
         }
-        cout<<"\n";
+        printf("\n");
     }
     return 0;
 }
