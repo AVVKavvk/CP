@@ -1,106 +1,91 @@
 #include<bits/stdc++.h>
 using namespace std ; 
 #define pi 3.14
-#define fli(a,b) for(int i=a;i<b;i++)
-#define flj(a,b) for(int j=a;j<b;j++)
-#define flk(a,b) for(int k=a;k<b;k++)
-#define ma(a,b)      ( (a) > (b) ? (a) : (b)); 
-#define mi(a,b)      ( (a) < (b) ? (a) : (b)) ;
+#define fi(a,b) for(int i=a;i<b;i++)
+#define fj(a,b) for(int j=a;j<b;j++)
+#define fk(a,b) for(int k=a;k<b;k++)
 #define pb push_back 
 #define pob pop_back 
-#define sz size() 
-#define p2s(a,b) std::cout <<a<<' ' << b << std::endl ;
-#define pn(a) std::cout <<a << std::endl ;
 #define nl std::cout << std::endl ;
-#define p(a) std::cout <<a ;
-#define ps(a) std::cout <<a<< ' ' ;
-#define cig(arr,n)   cin.getline(arr,n) 
-#define sza(a) sizeof(a)/sizeof(int)
-#define vec vector<char> 
-#define v2e vector <vector<int> > 
-#define v2ec vector <vector<char> >
-#define vei vector<int> 
-#define pu(n) push_back( n); 
 #define ll long long
+#define limit(x) x.begin(),x.end()
 
-// int n;
-struct pp
-{
-    int first, second;
-};
+
+
+ struct pp{
+    int first,second;
+ };
  
-bool operator<(const pp &a, const pp &b){
-// {   cout<<a.second<<"  "<<b.second<<endl;
-    //return a.second < b.second;                  //? TLE
-    return a.second > b.second;
+vector<pp> adj[100006];
+int vis[100006];
+ll dist[100006];
+int parent[100006];
+bool operator<(const pp&a,const pp&b){
+    return a.first>b.first;
 }
-vector< pp > adj[100005];
-int vis[100005];
-ll dist[100005];
-int parent[100005];
 int main() {
 ios_base::sync_with_stdio(false);
 cin.tie(NULL);
-int n;
-int m;
-cin>>n>>m;
+// #ifndef ONLINE_JUDGE 
+// freopen("input.txt", "r", stdin);
+// freopen("output.txt", "w", stdout);
+// #endif
 
-while(m--){
+
+
+int t=1;
+// cin>>t;
+while(t--){ 
+
+int n;
+cin>>n;
+for(int i=1;i<=n;i++)
+{dist[i]=1e15;parent[i]=i;}
+int m;
+cin>>m;
+fi(1,m+1){
     int u,v,w;
     cin>>u>>v>>w;
     pp temp;
     temp.first=v;
     temp.second=w;
-    adj[u].pb(temp);
+    adj[u].push_back(temp);
     temp.first=u;
-    temp.second=w;
-    adj[v].pb(temp);
-
+    adj[v].push_back(temp);
 }
-
-
-for(int i=1;i<=n;i++) parent[i]=i;
-for(int i=1;i<=n;i++) dist[i]=1e15;
 dist[1]=0;
+parent[1]=0;
+priority_queue<pp>pq;
+pq.push({0,1});
+int node;
+while(!pq.empty()){
+   node=pq.top().second;
+    pq.pop();
 
-    
-    
-    priority_queue<pp> pq;
-    pq.push({1,0});
-   
-    int a;
-    while(!pq.empty())
-    {
-        a=pq.top().first;
-        pq.pop();
-        for(const auto &x: adj[a])
-        {
-            if(dist[x.first]>dist[a]+x.second)
-            {
-                dist[x.first]=dist[a]+x.second;
-                pp temp;
-                temp.first=x.first;
-                temp.second=dist[x.first];
-                pq.push(temp);
-                parent[x.first]=a;
-            }
+    for(auto &it:adj[node]){
+        if(it.second+dist[node]<dist[it.first]){
+            pp temp;
+            dist[it.first]=it.second+dist[node];
+            temp.first=it.second+dist[node];
+            temp.second=it.first;
+            parent[it.first]=node;
+            pq.push(temp);
         }
     }
-
-if(dist[n]==1e15) {cout<< -1<<endl;return 0;}
-vector<int> ans;
-int node=n;
-while(node!=1){
-    
-    ans.push_back(node);
-    node=parent[node];
 }
-ans.push_back(1);
-reverse(ans.begin(),ans.end());
-for(auto i:ans){
-    cout<<i<<" ";
+if(dist[n]==1e15) {
+    cout<<-1<<endl;
+    return 0;
 }
-cout<<endl;
+vector<int>temp;
+while(n!=1){
+    temp.push_back(n);
+    n=parent[n];
+}
+temp.push_back(1);
+reverse(temp.begin(),temp.end());
+for(auto i:temp) cout<<i<<" ";cout<<endl;
 
+}
 return 0 ;
 }
