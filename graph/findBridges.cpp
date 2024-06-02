@@ -54,7 +54,8 @@ for(auto it:adj[node]){
        }
     }
     else{
-          mini[node]=min(mini[node],tin[it]);
+          mini[node]=min(mini[node],mini[it]);      //? both works
+        //   mini[node]=min(mini[node],tin[it]);
     }
 
 }

@@ -42,8 +42,8 @@ void build(int ind,int low,int high){
  
  void update(int ind,int low,int high,int i,int val){
     if(low==high){
-        arr[i]=val;
-        seg[ind] = val;
+        arr[i]+=val;
+        seg[ind]+= val;
         return ;
     }
     int mid=low +(high-low)/2;
@@ -90,10 +90,22 @@ build(0,0,n-1);
 int q;
 cin>>q;
 while(q--){
-    int l,r;
-    cin>>l>>r;
-    cout<<sumRange(0,0,n-1,l,r)<<endl;
+    int type;
+    cin>>type;
+    if(type==1){
+        int i,val;
+        cin>>i>>val;
+        int temp=val-arr[i];
+        arr[i]=val;
+        update(0,0,n-1,i,temp);
+    }
+    else{
+        int l,r;
+        cin>>l>>r;
+        cout<<sumRange(0,0,n-1,l,r)<<endl;
+    }
 }
+
 
 return 0 ;
 }
