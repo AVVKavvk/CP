@@ -64,6 +64,7 @@ void build(int ind ,int low,int high){
     
     // no overlap
     if(high<l || r<low )return node();
+
     int mid=low+(high-low)/2;
     node left=findLength(2*ind+1,low,mid,l,r);
     node right=findLength(2*ind+2,mid+1,high,l,r);
@@ -82,7 +83,7 @@ cin>>s;
 
 int q;
 cin>>q;
-build(0,0,s.size()-1);
+build(0,0,s.size()-1);  // ?   learn
 while(q--){
 int l,r;
 cin>>l>>r;
