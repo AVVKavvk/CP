@@ -43,10 +43,10 @@ if(n%4==2) return n+1;
 int main() {
 ios_base::sync_with_stdio(false);
 cin.tie(NULL);
-#ifndef ONLINE_JUDGE 
-freopen("input.txt", "r", stdin);
-freopen("output.txt", "w", stdout);
-#endif
+// #ifndef ONLINE_JUDGE 
+// freopen("input.txt", "r", stdin);
+// freopen("output.txt", "w", stdout);
+// #endif
 
 
 int t=1;
@@ -55,7 +55,7 @@ while(t--){
 int l,r;
 cin>>l>>r;
 
-cout<<calculateXOR(r)-calculateXOR(l-1);
+cout<<(calculateXOR(r) ^ calculateXOR(l-1));   //? learn ^ instead of -
 
 }
 return 0 ;
