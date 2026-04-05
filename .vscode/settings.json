@@ -8,6 +8,5 @@
     "valarray": "cpp"
   },
   "C_Cpp.errorSquiggles": "enabled",
-  // "C_Cpp.errorSquiggles": "disabled",
-  "accessibility.signals.sounds.volume": 0
+  "accessibility.signalOptions.volume": 0
 }
